@@ -15,7 +15,7 @@ var server = http.createServer(function(req, res) {
     ////////////////////////////////////////////
     //direct the request to appropriate function to be processed based on the url pathname
     //console.log(urlParts.pathname.replace('/ProxyYahoo', ''));
-    urlParts.pathname = urlParts.pathname.replace('/ProxyYahoo', '');
+    urlParts.pathname = urlParts.pathname.replace('/YahooProxy', '');
     //console.log(req.url, urlParts);
 
     switch(urlParts.pathname) {
@@ -66,7 +66,7 @@ function yahoo(req, res, urlParts) {
                     Low: result.regularMarketDayLow,
                     Clo: result.regularMarketPrice, 
                     vol: result.regularMarketVolume,
-                    name: result.displayName,
+                    symbol: result.symbol,
                     bid: result.bid,
                     ask: result.ask,
                     limit:  parseFloat((result.bid+result.ask)/2).toFixed(2)

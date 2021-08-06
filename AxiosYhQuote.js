@@ -27,12 +27,12 @@ function getQuotes(ticker, res) {
         var Lo = q.regularMarketDayLow;
         var vol = q.regularMarketVolume;
         var open = q.regularMarketOpen;
-        var name = q.displayName;
+        var symbol = q.symbol;
         var bid = q.bid;
         var ask = q.ask;
         
-        console.log("clo: ", Hi,Lo,clo,vol,open, name, bid,ask, "limit: ", (bid+ask)/2);  
-        console.log(q.symbol);
+        console.log("clo: ", Hi,Lo,clo,vol,open, symbol, bid,ask, "limit: ", (bid+ask)/2);  
+        //console.log(q.symbol);
         
         //console.log("status: " , status);
         //console.log("headers: " , headers);
