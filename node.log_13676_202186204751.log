@@ -1,0 +1,20 @@
+server is running on port: 24418               
+1
+calling
+clo:  442.94 441.8 442.49 45507923 442.1 undefined 442.55 442.53 limit:  442.53999999999996
+SPY
+2
+1
+calling
+TypeError: Cannot read property 'regularMarketPrice' of undefined
+    at D:\NodeJS\NodeJsHttp\ProxyYahoo\AxiosYhQuote.js:25:21
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
+    at async asyncCall (D:\NodeJS\NodeJsHttp\ProxyYahoo\index.js:60:24)
+2
+D:\NodeJS\NodeJsHttp\ProxyYahoo\index.js:64
+        const obj = { open: result.regularMarketOpen,
+                                   ^
+
+TypeError: Cannot read property 'regularMarketOpen' of undefined
+    at asyncCall (D:\NodeJS\NodeJsHttp\ProxyYahoo\index.js:64:36)
+    at processTicksAndRejections (node:internal/process/task_queues:93:5)
