@@ -1,6 +1,7 @@
 var http = require('http');
 var urlp = require('url');
-var yQuote = require('./AxiosYhQuote.js')
+var yQuote = require('./AxiosYhQuote.js');
+var yHist = require('./AxiosYhHist.js');
 
 var server = http.createServer(function(req, res) {
     const { method, url, headers, rawHeaders  } = req;
@@ -49,8 +50,19 @@ function homepage(req, res) {
  
 
 function yahoo(req, res, urlParts) {
+    
+    /////////////////////////
+    // to take care of CORS
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+        'Access-Control-Max-Age': 2592000, // 30 days
+        /** add other headers as per requirement */
+      };
+    res.writeHead(200, headers);
+    ////////////////////////////
     //res.writeHead(200, {"Content-Type":"text/csv"});
-    res.writeHead(200, {"Content-Type":"application/json"});
+    //res.writeHead(200, {"Content-Type":"application/json"});
     var queryObject = urlp.parse(req.url, true).query;
     const{sym} = queryObject;
     
@@ -88,11 +100,54 @@ function yahoo(req, res, urlParts) {
 }
 
 function yahooH(req, res, urlParts) {
-    res.writeHead(200, {"Content-Type":"text/plain"});
+    /////////////////////////
+    // to take care of CORS
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+        'Access-Control-Max-Age': 2592000, // 30 days
+        /** add other headers as per requirement */
+        /*'content-type': 'text/csv;charset=utf-8', */
+        'content-type': 'text/plain',
+      };
+    res.writeHead(200, headers);
+    ////////////////////////////
+    //res.writeHead(200, {"Content-Type":"text/plain"});
     var queryObject = urlp.parse(req.url, true).query;
+    const{sym,d1,d2} = queryObject;
     
-    res.write(JSON.stringify(queryObject));
-    res.end("Hello, we reached yahooH.");  
+    console.log(1);
+    /*async function asyncHCall() {
+        console.log('calling');
+        const result = await yHist.getHist(sym,d1,d2);
+
+        console.log(2);
+
+        res.write(JSON.stringify(result));
+        //res.write('<p>' + JSON.stringify(result) + '</p>');
+        
+        //res.write('<p>' + JSON.stringify(queryObject) + '</p>');
+        //res.end("Hello, we reached yahoo."); 
+        res.end(""); 
+
+    }
+
+    asyncHCall();
+    */
+    var hh;
+    yHist.getHist(sym,d1,d2,function(a /* a is passed using callback */)
+    {
+        //console.log(a); // a is 5
+        hh = a;  // assign the returned value to a variable
+    }
+    ).then (function () {
+        console.log(hh);
+        res.write(hh);  // display the return value
+        res.end(""); 
+    }
+    );
+
+     
 }
 
 var port = process.env.PORT || 3000;
