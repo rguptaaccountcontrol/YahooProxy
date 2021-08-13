@@ -70,7 +70,7 @@ function yahoo(req, res, urlParts) {
     async function asyncCall() {
         console.log('calling');
         const result = await yQuote.getQuotes(sym, res);
-        console.log("result",result);
+        //console.log("result",result);
         // expected output: "resolved"
         console.log(2);
         const obj = { open: result.regularMarketOpen,
@@ -142,7 +142,7 @@ function yahooH(req, res, urlParts) {
         hh = a;  // assign the returned value to a variable
     }
     ).then (function () {
-        console.log(hh);
+        //console.log(hh);
         res.write(hh);  // display the return value
         res.end(""); 
     }
