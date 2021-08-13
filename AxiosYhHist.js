@@ -36,7 +36,7 @@ async function getHist(ticker,startDate,endDate,callback) {
         //console.log(response);
         
         //console.log("status: " , status);
-        console.log("headers: " , headers);
+        //console.log("headers: " , headers);
         //console.log("config: " , config);
         //console.log(response);
     } catch (error) {

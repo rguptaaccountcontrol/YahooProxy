@@ -70,7 +70,7 @@ function yahoo(req, res, urlParts) {
     async function asyncCall() {
         console.log('calling');
         const result = await yQuote.getQuotes(sym, res);
-        //console.log("result",result);
+        console.log("result",result);
         // expected output: "resolved"
         console.log(2);
         const obj = { open: result.regularMarketOpen,
@@ -81,7 +81,8 @@ function yahoo(req, res, urlParts) {
                     symbol: result.symbol,
                     bid: result.bid,
                     ask: result.ask,
-                    limit:  parseFloat((result.bid+result.ask)/2).toFixed(2)
+                    limit:  parseFloat((result.bid+result.ask)/2).toFixed(2),
+                    chg: result.regularMarketChangePercent.toFixed(2) + "%"
                     };
 
         res.write(JSON.stringify(obj));
