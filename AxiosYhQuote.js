@@ -20,7 +20,7 @@ function getQuotes(ticker, res) {
 
         var q = response.data.quoteResponse.result[0];
 
-        //console.log(q);
+        //console.log("quote: ", q);
 
         var clo = q.regularMarketPrice;
         var Hi = q.regularMarketDayHigh;

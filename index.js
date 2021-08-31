@@ -66,14 +66,19 @@ function yahoo(req, res, urlParts) {
     var queryObject = urlp.parse(req.url, true).query;
     const{sym} = queryObject;
     
-    console.log(1);
+    //console.log(1);
     async function asyncCall() {
-        console.log('calling');
+        //console.log('calling');
         const result = await yQuote.getQuotes(sym, res);
         //console.log("result",result);
         // expected output: "resolved"
-        console.log(2);
-        const obj = { open: result.regularMarketOpen,
+        //console.log(2);
+        const obj = {
+                    regularMarketTime: result.regularMarketTime,
+                    shortName: result.shortName,
+                    ytdReturn: result.ytdReturn,
+                    fiftyTwoWeekHigh: result.fiftyTwoWeekHigh,
+                    open: result.regularMarketOpen,
                     Hi: result.regularMarketDayHigh, 
                     Low: result.regularMarketDayLow,
                     Clo: result.regularMarketPrice, 
@@ -86,10 +91,10 @@ function yahoo(req, res, urlParts) {
                     };
 
         res.write(JSON.stringify(obj));
-        //res.write('<p>' + JSON.stringify(result) + '</p>');
+
+        //console.log(JSON.stringify(obj));
+        //console.log(JSON.stringify(result));
         
-        //res.write('<p>' + JSON.stringify(queryObject) + '</p>');
-        //res.end("Hello, we reached yahoo."); 
         res.end(""); 
       }
     asyncCall();
@@ -117,7 +122,7 @@ function yahooH(req, res, urlParts) {
     var queryObject = urlp.parse(req.url, true).query;
     const{sym,d1,d2} = queryObject;
     
-    console.log(1);
+    //console.log(1);
     /*async function asyncHCall() {
         console.log('calling');
         const result = await yHist.getHist(sym,d1,d2);
